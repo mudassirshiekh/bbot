@@ -266,7 +266,7 @@ class Scanner:
                 f.write(self.preset.to_yaml())
 
             # log scan overview
-            start_msg = f"Scan with {len(self.preset.scan_modules):,} modules seeded with {len(self.target):,} targets"
+            start_msg = f"Scan with {len(self.preset.scan_modules):,} modules seeded with {len(self.seeds):,} targets"
             details = []
             if self.whitelist != self.target:
                 details.append(f"{len(self.whitelist):,} in whitelist")
@@ -359,7 +359,7 @@ class Scanner:
 
             # distribute seed events
             self.init_events_task = asyncio.create_task(
-                self.ingress_module.init_events(self.target.events), name=f"{self.name}.ingress_module.init_events()"
+                self.ingress_module.init_events(self.target.seeds.events), name=f"{self.name}.ingress_module.init_events()"
             )
 
             # main scan loop
@@ -892,6 +892,10 @@ class Scanner:
     @property
     def target(self):
         return self.preset.target
+
+    @property
+    def seeds(self):
+        return self.preset.seeds
 
     @property
     def whitelist(self):
