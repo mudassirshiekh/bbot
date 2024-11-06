@@ -37,7 +37,7 @@ class passivetotal(subdomain_enum_apikey):
         url = f"{self.base_url}/enrichment/subdomains?query={self.helpers.quote(query)}"
         return await self.api_request(url, auth=self.auth)
 
-    def parse_results(self, r, query):
+    async def parse_results(self, r, query):
         for subdomain in r.json().get("subdomains", []):
             yield f"{subdomain}.{query}"
 
