@@ -38,8 +38,10 @@ class passivetotal(subdomain_enum_apikey):
         return await self.api_request(url, auth=self.auth)
 
     async def parse_results(self, r, query):
+        results = set()
         for subdomain in r.json().get("subdomains", []):
-            yield f"{subdomain}.{query}"
+            results.add(f"{subdomain}.{query}")
+        return results
 
     @property
     def auth_secret(self):
