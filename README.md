@@ -23,7 +23,7 @@ _For more installation methods, including [Docker](https://hub.docker.com/r/blac
 ## Example Commands
 
 ### 1) Subdomain Finder
-
+## By Mudassir Alam
 Passive API sources plus a recursive DNS brute-force with target-specific subdomain mutations.
 
 ```bash
